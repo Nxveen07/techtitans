@@ -35,6 +35,7 @@ def analyze_content(req: ContentRequest):
         )
 
     is_video = "VIDEO TITLE:" in analysis_text and "TRANSCRIPT:" in analysis_text
+    is_search = "SEARCH RESULT TOPIC:" in analysis_text
     
     def _chatgpt_to_result(chatgpt_out: dict) -> dict:
         label = str(chatgpt_out.get("label", "UNCERTAIN")).upper()
@@ -71,6 +72,9 @@ def analyze_content(req: ContentRequest):
         explanation_parts = [reason]
         if is_video:
             explanation_parts.insert(0, "[Video Analysis] Speech and metadata analyzed.")
+        elif is_search:
+            explanation_parts.insert(0, "[Search Analysis] Analyzing trends for the searched topic.")
+
         if red_flags:
             explanation_parts.append(f"Red flags: {', '.join(red_flags[:3])}.")
 
@@ -98,7 +102,8 @@ def analyze_content(req: ContentRequest):
             "suggested_verification": verify_steps,
             "fact_check_provider": "groq",
             "cross_verification": cross_obj,
-            "is_video": is_video
+            "is_video": is_video,
+            "is_search": is_search
         }
 
     groq_result = analyze_with_groq(
