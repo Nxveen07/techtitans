@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TruthTrace AI - Intelligence Platform</title>
+    <meta name="description" content="AI-powered fake news detection, origin tracing, and active mitigation platform.">
+    <!-- Google Fonts: Inter and Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <!-- Phosphor Icons for smooth modern UI icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div id="app-container">
+        <!-- Sidebar / Navigation -->
+        <nav class="sidebar glass-panel">
+            <div class="logo-container">
+                <div class="logo-icon"><i class="ph-fill ph-brain"></i></div>
+                <h1 class="logo-text">TruthTrace AI</h1>
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="#" class="nav-item active" data-target="dashboard"><i class="ph ph-squares-four"></i>
+                        Dashboard</a></li>
+                <li><a href="#" class="nav-item" data-target="analysis"><i class="ph ph-magnifying-glass"></i>
+                        Analysis</a></li>
+                <li><a href="#" class="nav-item" data-target="tracking"><i class="ph ph-git-branch"></i> Origin
+                        Tracking</a></li>
+                <li><a href="#" class="nav-item" data-target="mitigation"><i class="ph ph-shield-check"></i>
+                        Mitigation</a></li>
+                <li><a href="#" class="nav-item" data-target="platforms"><i class="ph ph-share-network"></i>
+                        Platforms</a></li>
+                <li><a href="#" class="nav-item" data-target="analytics"><i class="ph ph-chart-line-up"></i>
+                        Analytics</a></li>
+            </ul>
+
+            <div class="sidebar-footer">
+                <div class="theme-toggle" id="themeToggle" title="Toggle Theme">
+                    <i class="ph ph-moon active" id="moonIcon"></i>
+                    <i class="ph ph-sun" id="sunIcon"></i>
+                </div>
+                <a href="#" class="nav-item" data-target="about"><img src="logo.png" alt="Tech Titans Logo"
+                        class="company-logo"
+                        style="height: 24px; width: auto; border-radius: 4px; object-fit: contain;"> Tech Titans</a>
+                <div class="user-profile">
+                    <img src="https://ui-avatars.com/api/?name=User&background=303a52&color=fff" alt="User Profile"
+                        class="avatar">
+                    <div class="user-info">
+                        <span class="user-name">Pro License</span>
+                        <span class="user-role">Enterprise</span>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Header for Mobile -->
+            <header class="mobile-header glass-panel">
+                <div class="logo-container">
+                    <div class="logo-icon"><i class="ph-fill ph-brain"></i></div>
+                    <h1 class="logo-text">TruthTrace</h1>
+                </div>
+                <button class="mobile-menu-btn"><i class="ph ph-list"></i></button>
+            </header>
+
+            <div class="view-container" id="viewContainer">
+                <!-- Views will be injected here via JS -->
+            </div>
+        </main>
+    </div>
+
+    <!-- Templates for different views -->
+
+    <!-- DASHBOARD VIEW -->
+    <template id="view-dashboard">
+        <div class="view-header">
+            <h2>Command Center</h2>
+            <p>Monitor truth in real-time. Enter content for AI verification.</p>
+        </div>
+
+        <div class="analysis-input-area glass-panel glow">
+            <div class="input-wrapper">
+                <i class="ph ph-link"></i>
+                <input type="text" id="mainInput" placeholder="Paste link, text, or social media URL to analyze...">
+                <button class="btn btn-primary" id="btnAnalyze">Analyze with AI</button>
+            </div>
+            <p id="backendStatus" class="text-muted" style="margin-top: 0.75rem;">Backend status: checking...</p>
+            <div class="quick-filters">
+                <span class="badge"><i class="ph ph-twitter-logo"></i> Twitter</span>
+                <span class="badge"><i class="ph ph-article"></i> News Article</span>
+                <span class="badge"><i class="ph ph-image"></i> Image Deepfake</span>
+            </div>
+        </div>
+
+        <div class="dashboard-grid">
+            <div class="stats-card glass-panel">
+                <div class="stat-header">
+                    <i class="ph ph-shield-warning text-alert"></i>
+                    <span>Threat Level</span>
+                </div>
+                <div class="stat-value">Elevated</div>
+                <div class="stat-chart mini-timeline">
+                    <div class="bar" style="height: 40%"></div>
+                    <div class="bar" style="height: 60%"></div>
+                    <div class="bar" style="height: 80%; background: var(--color-alert);"></div>
+                    <div class="bar" style="height: 50%"></div>
+                </div>
+            </div>
+            <div class="stats-card glass-panel">
+                <div class="stat-header">
+                    <i class="ph ph-check-circle text-success"></i>
+                    <span>Items Verified</span>
+                </div>
+                <div class="stat-value">12,482</div>
+                <div class="stat-subtext">+14% this week</div>
+            </div>
+            <div class="stats-card glass-panel">
+                <div class="stat-header">
+                    <i class="ph ph-robot text-primary"></i>
+                    <span>AI Confidence</span>
+                </div>
+                <div class="stat-value">98.5%</div>
+                <div class="stat-subtext">System running optimally</div>
+            </div>
+        </div>
+
+        <h3 class="section-title">Recent System Alerts</h3>
+        <div class="alerts-list">
+            <div class="alert-item glass-panel">
+                <div class="alert-icon fake"><i class="ph ph-warning-circle"></i></div>
+                <div class="alert-content">
+                    <h4>Deepfake Video Detected</h4>
+                    <p>Origin: Anonymous source on Telegram. Spread: High velocity.</p>
+                </div>
+                <button class="btn btn-outline btn-sm">View Analysis</button>
+            </div>
+            <div class="alert-item glass-panel">
+                <div class="alert-icon suspicious"><i class="ph ph-question"></i></div>
+                <div class="alert-content">
+                    <h4>Suspicious Quote Attribution</h4>
+                    <p>A recent political quote is gaining traction without verified sources.</p>
+                </div>
+                <button class="btn btn-outline btn-sm">Trace Origin</button>
+            </div>
+        </div>
+    </template>
+
+    <!-- ANALYSIS VIEW -->
+    <template id="view-analysis">
+        <div class="view-header">
+            <h2>AI Analysis</h2>
+            <p>Deep neural network evaluation of content credibility.</p>
+        </div>
+
+        <div class="analysis-results">
+            <div class="result-score-card glass-panel glow-fake">
+                <div class="score-header">
+                    <h3>Classification</h3>
+                    <span class="status-badge fake">Highly Suspicious</span>
+                </div>
+                <div class="text-muted" id="factEngineRow" style="margin-top: 0.5rem; display: none;">
+                    <strong>Fact-check engine:</strong> <span id="factEngineBadge" class="badge">Unknown</span>
+                </div>
+                <div class="text-muted" id="credibilityRow" style="margin-top: 0.75rem; display: none;">
+                    <strong>Credibility score:</strong> <span id="credibilityScore">--</span>/100
+                </div>
+                <div class="score-circle">
+                    <svg viewBox="0 0 36 36" class="circular-chart fake">
+                        <path class="circle-bg" d="M18 2.0845
+                            a 15.9155 15.9155 0 0 1 0 31.831
+                            a 15.9155 15.9155 0 0 1 0 -31.831" />
+                        <path class="circle" stroke-dasharray="85, 100" d="M18 2.0845
+                            a 15.9155 15.9155 0 0 1 0 31.831
+                            a 15.9155 15.9155 0 0 1 0 -31.831" />
+                        <text x="18" y="20.35" class="percentage">85%</text>
+                    </svg>
+                    <div class="score-label">Fake Probability</div>
+                </div>
+                <p class="ai-explanation text-muted">
+                    <i class="ph ph-robot"></i> <strong>AI Assistant:</strong> The image provided shows distinct
+                    artifacts of generative diffusion models around the edges of the subject's hands. Furthermore,
+                    linguistic analysis of the accompanying text matches known bot-farm structural patterns.
+                </p>
+            </div>
+
+            <div class="detailed-breakdown glass-panel">
+                <h3>Fact-Based Comparison</h3>
+                <div class="comparison-row">
+                    <div class="claim">
+                        <span class="label text-alert">Claim</span>
+                        <p id="analysisClaim">"New scientific study proves water is toxic in large cities."</p>
+                    </div>
+                    <div class="fact">
+                        <span class="label text-success">Verified Fact</span>
+                        <p id="analysisFact">No valid scientific papers support this. EPA and WHO confirm normal water
+                            safety levels.</p>
+                        <a href="#" class="source-link" id="analysisSource">Source: World Health Organization (WHO)</a>
+                        <div id="crossVerifyBox" class="text-muted" style="margin-top: 0.75rem; display:none;">
+                            <div><strong>Cross-verified sources:</strong></div>
+                            <div id="crossVerifyLinks" style="margin-top: 0.25rem;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Credibility Indicators</h3>
+                <div class="indicator-bar">
+                    <div class="indicator-label">Source Credibility</div>
+                    <div class="progress-bar">
+                        <div class="fill" style="width: 15%; background: var(--color-alert);"></div>
+                    </div>
+                </div>
+                <div class="indicator-bar">
+                    <div class="indicator-label">Language Sentiment (Sensationalism)</div>
+                    <div class="progress-bar">
+                        <div class="fill" style="width: 90%; background: var(--color-alert);"></div>
+                    </div>
+                </div>
+                <div class="indicator-bar">
+                    <div class="indicator-label">Image Forensics</div>
+                    <div class="progress-bar">
+                        <div class="fill" style="width: 95%; background: var(--color-alert);"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <!-- ORIGIN TRACKING VIEW -->
+    <template id="view-tracking">
+        <div class="view-header">
+            <h2>Origin Tracking</h2>
+            <p>Trace the spread of misinformation across the digital landscape.</p>
+        </div>
+
+        <div class="tracking-container glass-panel">
+            <div class="tracking-toolbar">
+                <select class="form-select">
+                    <option>All Platforms</option>
+                    <option>Twitter/X</option>
+                    <option>Facebook</option>
+                    <option>Telegram</option>
+                </select>
+                <div class="timeline-controls">
+                    <button class="btn btn-icon"><i class="ph ph-play"></i></button>
+                    <input type="range" min="1" max="100" value="50" class="timeline-slider">
+                    <span class="time-label">Oct 24, 14:00</span>
+                </div>
+            </div>
+
+            <div class="network-graph" id="networkGraph">
+                <!-- CSS-based network graph mock -->
+                <div class="node origin" style="top: 50%; left: 10%;" data-tooltip="Patient Zero: @AnonUser99"></div>
+
+                <div class="node amplifier" style="top: 30%; left: 30%;"></div>
+                <div class="line" style="top: 40%; left: 15%; width: 22%; transform: rotate(-35deg);"></div>
+
+                <div class="node amplifier" style="top: 70%; left: 35%;"></div>
+                <div class="line" style="top: 60%; left: 15%; width: 27%; transform: rotate(35deg);"></div>
+
+                <div class="node viral" style="top: 20%; left: 55%;" data-tooltip="Bot Swarm #A"></div>
+                <div class="line" style="top: 25%; left: 35%; width: 22%; transform: rotate(-25deg);"></div>
+
+                <div class="node regular" style="top: 40%; left: 50%;"></div>
+                <div class="node regular" style="top: 80%; left: 60%;"></div>
+
+                <div class="node viral" style="top: 50%; left: 80%;" data-tooltip="Mainstream Pickup"></div>
+            </div>
+
+            <div class="tracking-legend">
+                <span>
+                    <div class="dot origin"></div> Original Source
+                </span>
+                <span>
+                    <div class="dot amplifier"></div> Major Amplifier
+                </span>
+                <span>
+                    <div class="dot viral"></div> Viral Cluster
+                </span>
+                <span>
+                    <div class="dot regular"></div> Standard User
+                </span>
+            </div>
+
+            <div class="tracking-metrics-grid mt-2">
+                <div class="glass-panel" style="padding: 0.9rem;">
+                    <div class="text-muted">First Seen</div>
+                    <div><strong>24 Oct 2026, 10:02 AM UTC</strong></div>
+                </div>
+                <div class="glass-panel" style="padding: 0.9rem;">
+                    <div class="text-muted">Likely Origin Account</div>
+                    <div><strong>@AnonUser99 (X / Twitter)</strong></div>
+                </div>
+                <div class="glass-panel" style="padding: 0.9rem;">
+                    <div class="text-muted">Spread Velocity</div>
+                    <div><strong>+428 reposts / hour</strong></div>
+                </div>
+                <div class="glass-panel" style="padding: 0.9rem;">
+                    <div class="text-muted">Origin Confidence</div>
+                    <div><strong>91%</strong></div>
+                </div>
+            </div>
+
+            <div class="glass-panel mt-2 tracking-table-panel" style="padding: 1rem;">
+                <h3 style="margin-bottom: 0.75rem;">Top Amplifiers (Example)</h3>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Platform</th>
+                            <th>Account / Channel</th>
+                            <th>Followers/Reach</th>
+                            <th>Shares Generated</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>X / Twitter</td>
+                            <td>@rapid_news_feed</td>
+                            <td>212K</td>
+                            <td>4,820</td>
+                        </tr>
+                        <tr>
+                            <td>Telegram</td>
+                            <td>@daily_alerts_unofficial</td>
+                            <td>89K</td>
+                            <td>2,340</td>
+                        </tr>
+                        <tr>
+                            <td>Facebook</td>
+                            <td>Global Opinion Forum</td>
+                            <td>156K</td>
+                            <td>1,905</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="tracking-charts-grid mt-2">
+                <div class="glass-panel tracking-line-chart-panel" style="padding: 1rem;">
+                    <h3 style="margin-bottom: 0.65rem;">Spread Velocity Over Time (Example)</h3>
+                    <svg viewBox="0 0 520 220" style="width:100%; height:auto;">
+                        <line x1="40" y1="20" x2="40" y2="180" stroke="var(--color-border, #374151)" stroke-width="1" />
+                        <line x1="40" y1="180" x2="500" y2="180" stroke="var(--color-border, #374151)"
+                            stroke-width="1" />
+
+                        <line x1="40" y1="140" x2="500" y2="140" stroke="rgba(148,163,184,0.25)" stroke-width="1" />
+                        <line x1="40" y1="100" x2="500" y2="100" stroke="rgba(148,163,184,0.25)" stroke-width="1" />
+                        <line x1="40" y1="60" x2="500" y2="60" stroke="rgba(148,163,184,0.25)" stroke-width="1" />
+
+                        <polyline points="40,170 90,164 140,152 190,136 240,118 290,96 340,78 390,66 440,58 500,52"
+                            fill="none" stroke="var(--color-primary, #3b82f6)" stroke-width="3" stroke-linecap="round"
+                            stroke-linejoin="round" />
+
+                        <text x="36" y="196" font-size="11" fill="var(--color-text-muted, #94a3b8)">10:00</text>
+                        <text x="126" y="196" font-size="11" fill="var(--color-text-muted, #94a3b8)">12:00</text>
+                        <text x="216" y="196" font-size="11" fill="var(--color-text-muted, #94a3b8)">14:00</text>
+                        <text x="306" y="196" font-size="11" fill="var(--color-text-muted, #94a3b8)">16:00</text>
+                        <text x="396" y="196" font-size="11" fill="var(--color-text-muted, #94a3b8)">18:00</text>
+                        <text x="476" y="196" font-size="11" fill="var(--color-text-muted, #94a3b8)">20:00</text>
+
+                        <text x="6" y="62" font-size="11" fill="var(--color-text-muted, #94a3b8)">500</text>
+                        <text x="10" y="102" font-size="11" fill="var(--color-text-muted, #94a3b8)">350</text>
+                        <text x="10" y="142" font-size="11" fill="var(--color-text-muted, #94a3b8)">200</text>
+                        <text x="14" y="182" font-size="11" fill="var(--color-text-muted, #94a3b8)">0</text>
+                    </svg>
+                    <div class="text-muted" style="font-size: 0.85rem;">Estimated reposts/hour increased from 42 to 428
+                        in 10 hours.</div>
+                </div>
+
+                <div class="glass-panel tracking-share-chart-panel" style="padding: 1rem;">
+                    <h3 style="margin-bottom: 0.65rem;">Platform Share (Example)</h3>
+                    <div style="display:flex; flex-direction:column; gap:0.6rem;">
+                        <div>
+                            <div class="text-muted" style="font-size: 0.85rem;">X / Twitter (46%)</div>
+                            <div class="progress-bar">
+                                <div class="fill" style="width: 46%;"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="text-muted" style="font-size: 0.85rem;">Telegram (31%)</div>
+                            <div class="progress-bar">
+                                <div class="fill" style="width: 31%; background: #a855f7;"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="text-muted" style="font-size: 0.85rem;">Facebook (17%)</div>
+                            <div class="progress-bar">
+                                <div class="fill" style="width: 17%; background: #22c55e;"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="text-muted" style="font-size: 0.85rem;">Other (6%)</div>
+                            <div class="progress-bar">
+                                <div class="fill" style="width: 6%; background: #f59e0b;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="timeline-evolution glass-panel mt-2">
+            <h3>Content Evolution</h3>
+            <ul class="evolution-list">
+                <li>
+                    <div class="time">10:00 AM</div>
+                    <div class="desc">Original post created on 4chan board /pol/. Image generated via Midjourney v5.
+                    </div>
+                </li>
+                <li>
+                    <div class="time">12:30 PM</div>
+                    <div class="desc">Crossposted to Twitter by bot accounts. Text modified to increase outrage.</div>
+                </li>
+                <li>
+                    <div class="time">03:45 PM</div>
+                    <div class="desc">Picked up by prominent influencer account (500k+ followers), accelerating spread
+                        by 400%.</div>
+                </li>
+            </ul>
+        </div>
+    </template>
+
+    <!-- MITIGATION VIEW -->
+    <template id="view-mitigation">
+        <div class="view-header">
+            <h2>Mitigation Control Panel</h2>
+            <p>Active interventions to reduce the spread of classified misinformation.</p>
+        </div>
+
+        <div class="mitigation-toggles glass-panel">
+            <div class="toggle-row">
+                <div class="toggle-info">
+                    <h3>Auto-Mitigation Mode</h3>
+                    <p>Allow AI to automatically issue APIs takedowns, flag content, and inject community notes.</p>
+                </div>
+                <label class="switch">
+                    <input type="checkbox" checked>
+                    <span class="slider round"></span>
+                </label>
+            </div>
+        </div>
+
+        <div class="mitigation-status-grid">
+            <div class="status-box glass-panel">
+                <h4>Active Interventions</h4>
+                <div class="big-number text-primary">1,402</div>
+            </div>
+            <div class="status-box glass-panel">
+                <h4>Take-down Requests</h4>
+                <div class="big-number text-alert">340</div>
+            </div>
+            <div class="status-box glass-panel">
+                <h4>Reach Reduced By</h4>
+                <div class="big-number text-success">87%</div>
+            </div>
+        </div>
+
+        <div class="action-log glass-panel mt-2">
+            <h3>Recent Actions</h3>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Time</th>
+                        <th>Target</th>
+                        <th>Action Taken</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Just now</td>
+                        <td>Twitter UID: 849201</td>
+                        <td>Injected Context Note</td>
+                        <td><span class="badge success">Active</span></td>
+                    </tr>
+                    <tr>
+                        <td>5 mins ago</td>
+                        <td>Facebook Group ID: 94A</td>
+                        <td>API Flag for Review</td>
+                        <td><span class="badge warning">Pending Meta Review</span></td>
+                    </tr>
+                    <tr>
+                        <td>12 mins ago</td>
+                        <td>Domain: fake-news-hub.org</td>
+                        <td>Added to DNS Blacklist</td>
+                        <td><span class="badge success">Complete</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </template>
+
+    <!-- PLATFORMS VIEW -->
+    <template id="view-platforms">
+        <div class="view-header">
+            <h2>Multi-Platform Integration</h2>
+            <p>Unified oversight of the digital ecosystem.</p>
+        </div>
+
+        <div class="platforms-grid">
+            <div class="platform-card glass-panel">
+                <div class="platform-header">
+                    <i class="ph-fill ph-twitter-logo" style="color: #1DA1F2;"></i>
+                    <h3>X / Twitter</h3>
+                </div>
+                <div class="platform-stats">
+                    <div class="stat"><span class="label">API Status</span> <span class="badge success">Connected</span>
+                    </div>
+                    <div class="stat"><span class="label">Active Threats</span> <span>1.2K</span></div>
+                    <div class="stat"><span class="label">Auto-Mitigation</span> <span
+                            class="badge success">Enabled</span></div>
+                </div>
+                <button class="btn btn-outline btn-full">Configure Sync</button>
+            </div>
+
+            <div class="platform-card glass-panel">
+                <div class="platform-header">
+                    <i class="ph-fill ph-facebook-logo" style="color: #1877F2;"></i>
+                    <h3>Facebook</h3>
+                </div>
+                <div class="platform-stats">
+                    <div class="stat"><span class="label">API Status</span> <span class="badge success">Connected</span>
+                    </div>
+                    <div class="stat"><span class="label">Active Threats</span> <span>850</span></div>
+                    <div class="stat"><span class="label">Auto-Mitigation</span> <span class="badge warning">Manual
+                            Review</span></div>
+                </div>
+                <button class="btn btn-outline btn-full">Configure Sync</button>
+            </div>
+
+            <div class="platform-card glass-panel">
+                <div class="platform-header">
+                    <i class="ph-fill ph-telegram-logo" style="color: #0088cc;"></i>
+                    <h3>Telegram</h3>
+                </div>
+                <div class="platform-stats">
+                    <div class="stat"><span class="label">API Status</span> <span class="badge warning">Web
+                            Scrape</span></div>
+                    <div class="stat"><span class="label">Active Threats</span> <span>3.4K</span></div>
+                    <div class="stat"><span class="label">Auto-Mitigation</span> <span
+                            class="badge fake">Disabled</span></div>
+                </div>
+                <button class="btn btn-outline btn-full">Configure Sync</button>
+            </div>
+        </div>
+    </template>
+
+    <!-- ANALYTICS VIEW -->
+    <template id="view-analytics">
+        <div class="view-header">
+            <h2>Enterprise Analytics</h2>
+            <p>Deep insights into misinformation trends and system efficiency.</p>
+        </div>
+
+        <div class="ai-summary glass-panel glow">
+            <i class="ph ph-sparkle text-primary"></i>
+            <p><strong>AI Insight:</strong> Misinformation regarding healthcare has spiked by 35% in the last 48 hours,
+                largely originating from visually manipulated infographics on X. TruthTrace auto-mitigation has
+                successfully throttled reach by an estimated 2.4 million views.</p>
+        </div>
+
+        <div class="chart-container glass-panel mt-2">
+            <h3>Emerging Misinformation Topics</h3>
+            <div class="pseudo-barchart">
+                <div class="bar-row"><span class="label">Elections</span>
+                    <div class="bar-wrapper">
+                        <div class="fill text-alert" style="width: 80%"></div>
+                    </div><span class="val">80%</span>
+                </div>
+                <div class="bar-row"><span class="label">Healthcare</span>
+                    <div class="bar-wrapper">
+                        <div class="fill text-alert" style="width: 65%"></div>
+                    </div><span class="val">65%</span>
+                </div>
+                <div class="bar-row"><span class="label">Cryptocurrency</span>
+                    <div class="bar-wrapper">
+                        <div class="fill text-warning" style="width: 45%"></div>
+                    </div><span class="val">45%</span>
+                </div>
+                <div class="bar-row"><span class="label">Celebrities</span>
+                    <div class="bar-wrapper">
+                        <div class="fill text-primary" style="width: 20%"></div>
+                    </div><span class="val">20%</span>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <!-- ABOUT / TECH TITANS VIEW -->
+    <template id="view-about">
+        <div class="view-header">
+            <h2>About Tech Titans</h2>
+            <p>The visionaries behind TruthTrace AI.</p>
+        </div>
+
+        <div class="about-hero glass-panel text-center">
+            <img src="logo.png" alt="Tech Titans Logo" class="company-logo"
+                style="max-height: 120px; width: auto; margin-bottom: 1.5rem; object-fit: contain;">
+            <h1>TruthTrace AI</h1>
+            <p class="tagline">Empowering Truth, Securing the Digital Frontier.</p>
+            <p class="mission">TruthTrace AI helps organizations detect, trace, and mitigate misinformation using
+                cutting-edge artificial neural networks.</p>
+        </div>
+
+        <h3 class="section-title text-center mt-2">Core Team</h3>
+        <div class="team-grid">
+            <div class="team-card glass-panel">
+                <img src="https://ui-avatars.com/api/?name=Naveen+B&background=1e293b&color=38bdf8" alt="Naveen"
+                    class="avatar-lg">
+                <h4>Naveen B</h4>
+                <span>Founder / Engineer</span>
+            </div>
+            <div class="team-card glass-panel">
+                <img src="https://ui-avatars.com/api/?name=Hariharan+S&background=1e293b&color=34d399" alt="Hariharan"
+                    class="avatar-lg">
+                <h4>Hariharan S</h4>
+                <span>AI Architect</span>
+            </div>
+            <div class="team-card glass-panel">
+                <img src="https://ui-avatars.com/api/?name=Eshwar+SK&background=1e293b&color=c084fc" alt="Eshwar"
+                    class="avatar-lg">
+                <h4>Eshwar S K</h4>
+                <span>Data Scientist</span>
+            </div>
+            <div class="team-card glass-panel">
+                <img src="https://ui-avatars.com/api/?name=Niteshan+M&background=1e293b&color=fbbf24" alt="Niteshan"
+                    class="avatar-lg">
+                <h4>Niteshan M</h4>
+                <span>Product / UX Lead</span>
+            </div>
+        </div>
+    </template>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
