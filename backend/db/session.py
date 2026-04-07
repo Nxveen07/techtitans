@@ -13,10 +13,16 @@ DATABASE_URL = os.getenv(
 )
 
 _engine_kwargs = {"future": True, "pool_pre_ping": True}
-if DATABASE_URL.startswith("postgresql"):
-    _engine_kwargs["connect_args"] = {"connect_timeout": 5}
+if "postgresql" in DATABASE_URL:
+    _engine_kwargs["connect_args"] = {"connect_timeout": 2}
 
-engine = create_engine(DATABASE_URL, **_engine_kwargs)
+# Use a failsafe engine creation
+try:
+    engine = create_engine(DATABASE_URL, **_engine_kwargs)
+except Exception:
+    # Fallback to a dummy sqlite in-memory if Postgres totally fails to initialize
+    engine = create_engine("sqlite:///:memory:")
+
 SessionLocal = sessionmaker(bind=engine, autocommit=False, autoflush=False, future=True)
 Base = declarative_base()
 

@@ -1,27 +1,20 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "backend/app.py",
-      "use": "@vercel/python"
-    },
-    {
-      "src": "frontend/**",
-      "use": "@vercel/static"
-    }
-  ],
   "rewrites": [
     {
       "source": "/api/(.*)",
-      "destination": "backend/app.py"
+      "destination": "api/index.py"
     },
     {
       "source": "/health",
-      "destination": "backend/app.py"
+      "destination": "api/index.py"
     },
     {
       "source": "/(.*)",
       "destination": "/frontend/$1"
     }
-  ]
+  ],
+  "env": {
+    "PYTHONPATH": "backend"
+  }
 }
