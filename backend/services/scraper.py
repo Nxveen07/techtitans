@@ -1,9 +1,15 @@
 import requests
 from bs4 import BeautifulSoup
+from .video_service import get_video_content
 
 
 def scrape_url_text(url: str) -> str:
     """Fetch URL and return cleaned visible text."""
+    # First check if it's a video
+    video_data = get_video_content(url)
+    if video_data.get("is_video"):
+        return video_data.get("text", "")
+
     try:
         headers = {"User-Agent": "Mozilla/5.0 TruthTrace_Bot"}
         response = requests.get(url, headers=headers, timeout=8)

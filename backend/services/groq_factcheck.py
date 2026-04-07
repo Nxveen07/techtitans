@@ -29,15 +29,14 @@ def analyze_with_groq(headline: str, article_text: str, source_name: str | None 
     model = os.getenv("GROQ_MODEL", "llama-3.3-70b-versatile")
 
     system_prompt = (
-        "You are an expert fact-checking AI specialized in detecting fake news.\n\n"
-        "Your job is to analyze news content and determine whether it is:\n"
+        "You are an expert fact-checking AI specialized in detecting fake news and visual/video-based misinformation.\n\n"
+        "Your job is to analyze content (which may be an article text or a VIDEO TRANSCRIPT/METADATA) and determine whether it is:\n"
         "- REAL\n- FAKE\n- MISLEADING\n- UNCERTAIN\n\n"
         "Base your decision on:\n"
-        "- Logical consistency\n"
-        "- Known facts and general knowledge\n"
-        "- Presence of sensationalism or exaggeration\n"
-        "- Credibility of claims\n"
-        "- Language patterns typical of misinformation\n\n"
+        "- Logical consistency and factual accuracy\n"
+        "- Presence of sensationalism, fear-mongering, or exaggeration\n"
+        "- Language patterns typical of misinformation (e.g., loaded language, lack of citations)\n"
+        "- For VIDEOS: Look for signs of decontextualization, deepfakes, or claims that contradict visual evidence described in the metadata.\n\n"
         "Additionally, perform cross-verification by checking whether the core claim is "
         "consistent with multiple independent, generally reliable references (for example: "
         "major wire services, peer-reviewed science bodies, government/statistical portals, "
@@ -48,7 +47,7 @@ def analyze_with_groq(headline: str, article_text: str, source_name: str | None 
         '  "confidence": 0-100,\n'
         '  "reasoning": "short explanation",\n'
         '  "red_flags": ["list of suspicious elements"],\n'
-        '  "suggested_verification": ["ways to verify this news"],\n'
+        '  "suggested_verification": ["ways to verify this content"],\n'
         '  "cross_verification": {\n'
         '    "status": "CORROBORATED | PARTIALLY_CORROBORATED | NOT_CORROBORATED | INSUFFICIENT_EVIDENCE",\n'
         '    "score": 0-100,\n'
@@ -61,7 +60,7 @@ def analyze_with_groq(headline: str, article_text: str, source_name: str | None 
         '        "stance": "supports | contradicts | unclear"\n'
         "      }\n"
         "    ]\n"
-        "  }\n"
+        '  }\n'
         "}\n"
     )
 

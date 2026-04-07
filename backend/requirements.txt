@@ -1,9 +1,10 @@
+youtube-transcript-api
+beautifulsoup4
+requests
 fastapi
 uvicorn
 pydantic
 pydantic-settings
 sqlalchemy
 psycopg[binary]
-requests
-beautifulsoup4
 python-dotenv

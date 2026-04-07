@@ -34,10 +34,12 @@ def analyze_content(req: ContentRequest):
             detail="Not enough text context. Please provide a longer claim or URL.",
         )
 
+    is_video = "VIDEO TITLE:" in analysis_text and "TRANSCRIPT:" in analysis_text
+    
     def _chatgpt_to_result(chatgpt_out: dict) -> dict:
         label = str(chatgpt_out.get("label", "UNCERTAIN")).upper()
         conf = int(chatgpt_out.get("confidence", 0))
-        reason = str(chatgpt_out.get("reasoning", "")).strip() or "ChatGPT analysis completed."
+        reason = str(chatgpt_out.get("reasoning", "")).strip() or "Groq analysis completed."
         red_flags = chatgpt_out.get("red_flags", []) if isinstance(chatgpt_out.get("red_flags"), list) else []
         verify_steps = (
             chatgpt_out.get("suggested_verification", [])
@@ -67,6 +69,8 @@ def analyze_content(req: ContentRequest):
             fact = "The claim cannot be confidently verified with available information."
 
         explanation_parts = [reason]
+        if is_video:
+            explanation_parts.insert(0, "[Video Analysis] Speech and metadata analyzed.")
         if red_flags:
             explanation_parts.append(f"Red flags: {', '.join(red_flags[:3])}.")
 
@@ -94,11 +98,12 @@ def analyze_content(req: ContentRequest):
             "suggested_verification": verify_steps,
             "fact_check_provider": "groq",
             "cross_verification": cross_obj,
+            "is_video": is_video
         }
 
     groq_result = analyze_with_groq(
         headline=content_raw[:180],
-        article_text=analysis_text[:3000],
+        article_text=analysis_text[:6000],
         source_name="User Input",
     )
 

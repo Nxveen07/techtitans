@@ -16,10 +16,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const urlParams = new URLSearchParams(window.location.search);
         const fromQuery = urlParams.get('api');
         const fromStorage = window.localStorage.getItem('truthtrace_api_base');
-        const host = window.location.hostname;
+        const origin = window.location.origin;
         
-        // Priority: 1. URL Query (?api=...) 2. Last working (storage) 3. Localhost/Wi-Fi
-        const defaults = [`http://${host}:8001`, `http://${host}:8000`, 'http://127.0.0.1:8001', 'http://localhost:8001'];
+        // Priority: 1. URL Query (?api=...) 2. Last working (storage) 3. Current Host (Vercel) 4. Localhost/Wi-Fi
+        const defaults = [origin, `http://${window.location.hostname}:8001`, 'http://127.0.0.1:8001', 'http://localhost:8000'];
         const merged = [fromQuery, fromStorage, ...defaults]
             .map(normalizeBaseUrl)
             .filter(Boolean);
